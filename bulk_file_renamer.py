@@ -34,7 +34,8 @@ def renomear_arquivos(arquivos, diretorio, novo_padrao):
     """
     for indice, arq in enumerate(arquivos):
         caminho_antigo = os.path.join(diretorio, arq)
-        nome_novo = novo_padrao.format(indice=indice, original=arq)
+        # Suporta os placeholders {index} e {indice} para o índice
+        nome_novo = novo_padrao.format(index=indice, indice=indice, original=arq)
         caminho_novo = os.path.join(diretorio, nome_novo)
 
         try:
@@ -54,7 +55,7 @@ def main():
 
     print(f"Arquivos encontrados: {', '.join(arquivos)}")
     novo_padrao = input(
-        "Digite o novo padrão para renomeação (use '{indice}' para o índice e '{original}' para o nome original): "
+        "Digite o novo padrão para renomeação (use '{index}' ou '{indice}' para o índice e '{original}' para o nome original): "
     )
     renomear_arquivos(arquivos, diretorio, novo_padrao)
 
